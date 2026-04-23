@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan maestro — Mirador Costalegre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <style>
+        .plan-wrap {
+            padding: 5rem 0;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 4rem;
+        }
+        .plan-image {
+            aspect-ratio: 4/3;
+            background: var(--cream);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .plan-svg {
+            width: 100%;
+            height: 100%;
+            max-width: 900px;
+        }
+        .zone {
+            fill: rgba(44, 61, 46, 0.08);
+            stroke: var(--olive);
+            stroke-width: 1;
+            cursor: pointer;
+            transition: fill 0.3s;
+        }
+        .zone:hover, .zone.active { fill: rgba(181, 136, 74, 0.35); }
+        .plan-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .legend-item {
+            padding: 1.2rem;
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .legend-item:hover, .legend-item.active {
+            background: var(--olive);
+            color: var(--cream);
+            border-color: var(--olive);
+        }
+        .legend-item h4 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .legend-item h4 em {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.6;
+        }
+        .legend-item p {
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 900px) {
+            .plan-wrap { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="page-body">
+    <div id="headerMount"></div>
+
+    <div class="container">
+        <div class="page-head">
+            <span class="crumb reveal"><a href="../index.html">Inicio</a> / <span>Plan maestro</span></span>
+            <h1 class="reveal">Plan <em>maestro</em></h1>
+            <p class="reveal">23 villas distribuidas en 4 bloques, diseñadas para que cada residencia tenga privacidad, luz natural y vista irrepetible al Pacífico.</p>
+        </div>
+
+        <section class="plan-wrap">
+            <div class="plan-image reveal">
+                <svg class="plan-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Terrain background -->
+                    <rect width="900" height="700" fill="#efe6d6"/>
+                    <!-- Ocean on left -->
+                    <rect x="0" y="0" width="140" height="700" fill="#2c3d2e" fill-opacity="0.15"/>
+                    <text x="70" y="350" font-family="Inter" font-size="11" fill="#2c3d2e" text-anchor="middle" transform="rotate(-90 70 350)">OCÉANO PACÍFICO</text>
+
+                    <!-- Roads -->
+                    <path d="M 160 120 Q 400 100 800 180" stroke="#b5884a" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M 180 350 Q 450 380 820 400" stroke="#b5884a" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M 200 580 Q 500 560 850 620" stroke="#b5884a" stroke-width="2" fill="none" opacity="0.5"/>
+
+                    <!-- Zones (clickable) -->
+                    <rect class="zone" data-zone="1" x="560" y="60" width="280" height="160" rx="4"/>
+                    <rect class="zone" data-zone="2" x="450" y="230" width="400" height="120" rx="4"/>
+                    <rect class="zone" data-zone="3" x="260" y="370" width="540" height="160" rx="4"/>
+                    <rect class="zone" data-zone="4" x="160" y="540" width="640" height="140" rx="4"/>
+
+                    <!-- Villa dots -->
+                    <g fill="#2c3d2e">
+                        <circle cx="620" cy="110" r="4"/><circle cx="680" cy="130" r="4"/><circle cx="740" cy="120" r="4"/>
+                        <circle cx="790" cy="160" r="4"/><circle cx="600" cy="180" r="4"/><circle cx="660" cy="190" r="4"/>
+                        <circle cx="510" cy="280" r="4"/><circle cx="580" cy="300" r="4"/><circle cx="650" cy="280" r="4"/>
+                        <circle cx="720" cy="310" r="4"/><circle cx="790" cy="290" r="4"/><circle cx="470" cy="320" r="4"/>
+                        <circle cx="310" cy="420" r="4"/><circle cx="400" cy="440" r="4"/><circle cx="500" cy="430" r="4"/>
+                        <circle cx="590" cy="460" r="4"/><circle cx="680" cy="440" r="4"/><circle cx="770" cy="470" r="4"/>
+                        <circle cx="230" cy="600" r="4"/><circle cx="340" cy="620" r="4"/><circle cx="470" cy="600" r="4"/>
+                        <circle cx="600" cy="630" r="4"/><circle cx="730" cy="610" r="4"/>
+                    </g>
+
+                    <!-- Labels -->
+                    <text x="700" y="50" font-family="Cormorant Garamond" font-size="18" fill="#2c3d2e" text-anchor="middle" font-style="italic">Bloque 1 · Cima</text>
+                    <text x="650" y="220" font-family="Cormorant Garamond" font-size="18" fill="#2c3d2e" text-anchor="middle" font-style="italic">Bloque 2 · Colina</text>
+                    <text x="530" y="360" font-family="Cormorant Garamond" font-size="18" fill="#2c3d2e" text-anchor="middle" font-style="italic">Bloque 3 · Ladera</text>
+                    <text x="480" y="525" font-family="Cormorant Garamond" font-size="18" fill="#2c3d2e" text-anchor="middle" font-style="italic">Bloque 4 · Playa</text>
+
+                    <!-- Amenities markers -->
+                    <g>
+                        <circle cx="820" cy="480" r="12" fill="#b5884a"/>
+                        <text x="820" y="485" font-family="Inter" font-size="10" fill="#f5efe3" text-anchor="middle" font-weight="600">S</text>
+                        <text x="820" y="510" font-family="Inter" font-size="9" fill="#2c3d2e" text-anchor="middle">SPA</text>
+                    </g>
+                    <g>
+                        <circle cx="840" cy="350" r="12" fill="#b5884a"/>
+                        <text x="840" y="355" font-family="Inter" font-size="10" fill="#f5efe3" text-anchor="middle" font-weight="600">C</text>
+                        <text x="840" y="380" font-family="Inter" font-size="9" fill="#2c3d2e" text-anchor="middle">CLUB</text>
+                    </g>
+                </svg>
+            </div>
+
+            <aside class="plan-legend reveal">
+                <div class="legend-item" data-zone="1">
+                    <h4>Bloque 1 · Cima <em>06</em></h4>
+                    <p>Villas con vista panorámica, las más elevadas del conjunto.</p>
+                </div>
+                <div class="legend-item" data-zone="2">
+                    <h4>Bloque 2 · Colina <em>06</em></h4>
+                    <p>Bosque primario conservado, villas entre vegetación endémica.</p>
+                </div>
+                <div class="legend-item" data-zone="3">
+                    <h4>Bloque 3 · Ladera <em>06</em></h4>
+                    <p>Doble orientación: luz del amanecer y atardecer al mar.</p>
+                </div>
+                <div class="legend-item" data-zone="4">
+                    <h4>Bloque 4 · Playa <em>05</em></h4>
+                    <p>Pies en la arena, acceso directo a playa privada.</p>
+                </div>
+
+                <a href="../index.html" class="form-submit" style="margin-top: 1rem; background: var(--olive);">
+                    Ver genplan interactivo
+                    <svg viewBox="0 0 24 24" width="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+            </aside>
+        </section>
+    </div>
+
+    <div id="footerMount"></div>
+    <script src="_partials.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.querySelectorAll('.legend-item, .zone').forEach(el => {
+            el.addEventListener('click', () => {
+                const z = el.dataset.zone;
+                document.querySelectorAll('.legend-item, .zone').forEach(x => x.classList.remove('active'));
+                document.querySelectorAll(`[data-zone="${z}"]`).forEach(x => x.classList.add('active'));
+            });
+        });
+    </script>
+</body>
+</html>

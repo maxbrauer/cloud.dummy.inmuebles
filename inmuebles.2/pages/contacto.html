@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto — Mirador Costalegre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body class="page-body">
+    <div id="headerMount"></div>
+
+    <div class="container">
+        <div class="page-head">
+            <span class="crumb reveal"><a href="../index.html">Inicio</a> / <span>Contacto</span></span>
+            <h1 class="reveal">Agenda una <em>visita</em></h1>
+            <p class="reveal">Nuestro equipo de ventas te atenderá en menos de 24 horas para coordinar una visita privada al conjunto y a la villa de tu interés.</p>
+        </div>
+
+        <section class="contact-wrap">
+            <div class="contact-info reveal">
+                <h2>Hablemos <em>en persona</em></h2>
+                <p>Estamos en Carretera 200, kilómetro 120, a 55 minutos del aeropuerto de Manzanillo. Traslado privado incluido para visitas agendadas.</p>
+
+                <div class="contact-channels">
+                    <div class="channel">
+                        <small>Ventas</small>
+                        <span>+52 322 000 0000</span>
+                    </div>
+                    <div class="channel">
+                        <small>Correo</small>
+                        <span>ventas@miradorcostalegre.mx</span>
+                    </div>
+                    <div class="channel">
+                        <small>Oficina CDMX</small>
+                        <span>Masaryk 111, Polanco</span>
+                    </div>
+                    <div class="channel">
+                        <small>Oficina Jalisco</small>
+                        <span>Careyes · por cita</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="form reveal" onsubmit="event.preventDefault(); alert('Gracias. Te contactamos en breve.');">
+                <div class="form-row">
+                    <label for="fname">Nombre completo</label>
+                    <input type="text" id="fname" required>
+                </div>
+                <div class="form-row">
+                    <label for="femail">Correo electrónico</label>
+                    <input type="email" id="femail" required>
+                </div>
+                <div class="form-row">
+                    <label for="fphone">Teléfono</label>
+                    <input type="tel" id="fphone">
+                </div>
+                <div class="form-row">
+                    <label for="finterest">Villa de interés</label>
+                    <select id="finterest">
+                        <option value="">Cualquiera</option>
+                        <option>Bloque 1 · Cima</option>
+                        <option>Bloque 2 · Colina</option>
+                        <option>Bloque 3 · Ladera</option>
+                        <option>Bloque 4 · Playa</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="fdate">Fecha preferida de visita</label>
+                    <input type="date" id="fdate">
+                </div>
+                <div class="form-row">
+                    <label for="fmsg">Mensaje</label>
+                    <textarea id="fmsg" placeholder="Cuéntanos qué buscas..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                    Enviar solicitud
+                    <svg viewBox="0 0 24 24" width="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <div id="footerMount"></div>
+    <script src="_partials.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

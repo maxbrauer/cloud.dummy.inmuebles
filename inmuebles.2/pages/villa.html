@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa — Mirador Costalegre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body class="page-body">
+    <div id="headerMount"></div>
+
+    <!-- HERO -->
+    <section class="villa-hero">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85" alt="Villa Mirador">
+        <div class="villa-hero-info">
+            <div>
+                <small>Bloque 4 · Playa</small>
+                <h1>Villa <em data-villa-id>5</em></h1>
+            </div>
+            <div class="villa-hero-stats">
+                <span>5 recámaras · 5 baños</span>
+                <span>391.51 m² construidos</span>
+                <span>820 m² de terreno</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECS -->
+    <section class="specs">
+        <div class="container">
+            <div class="specs-grid reveal">
+                <div class="spec"><strong>391.51</strong><small>m² construidos</small></div>
+                <div class="spec"><strong>820</strong><small>m² de terreno</small></div>
+                <div class="spec"><strong>5</strong><small>recámaras</small></div>
+                <div class="spec"><strong>5</strong><small>baños completos</small></div>
+                <div class="spec"><strong>2</strong><small>salas de estar</small></div>
+                <div class="spec"><strong>1</strong><small>alberca privada</small></div>
+                <div class="spec"><strong>112</strong><small>m² de terraza</small></div>
+                <div class="spec"><strong>3</strong><small>cajones de estacionamiento</small></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOORPLAN -->
+    <section class="floorplan">
+        <div class="container">
+            <div class="page-head" style="border: none; padding: 0 0 3rem;">
+                <span class="crumb reveal"><a href="../index.html">Genplan</a> / <span>Plantas arquitectónicas</span></span>
+                <h2 style="font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 400; line-height: 1;" class="reveal">Plantas <em style="font-style: italic; color: var(--olive);">de villa</em></h2>
+            </div>
+
+            <div class="floorplan-tabs reveal">
+                <button class="fp-tab active" data-target="fp1">Planta baja</button>
+                <button class="fp-tab" data-target="fp2">Planta alta</button>
+                <button class="fp-tab" data-target="fp3">Azotea</button>
+                <button class="fp-tab" data-target="fp4">Exterior</button>
+            </div>
+
+            <div class="floorplan-image reveal">
+                <svg id="fp1" class="floorplan-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="50" y="50" width="700" height="400" fill="none" stroke="#2c3d2e" stroke-width="2"/>
+                    <line x1="50" y1="200" x2="500" y2="200" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="300" y1="50" x2="300" y2="200" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="500" y1="50" x2="500" y2="450" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="500" y1="300" x2="750" y2="300" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <rect x="620" y="360" width="110" height="70" fill="#b5884a" fill-opacity="0.25" stroke="#2c3d2e" stroke-width="1"/>
+                    <text x="150" y="130" font-family="Inter" font-size="14" fill="#2c3d2e" text-anchor="middle">Cocina</text>
+                    <text x="400" y="130" font-family="Inter" font-size="14" fill="#2c3d2e" text-anchor="middle">Comedor</text>
+                    <text x="260" y="320" font-family="Inter" font-size="14" fill="#2c3d2e" text-anchor="middle">Sala</text>
+                    <text x="620" y="170" font-family="Inter" font-size="14" fill="#2c3d2e" text-anchor="middle">Recámara principal</text>
+                    <text x="600" y="340" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Terraza</text>
+                    <text x="675" y="405" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Alberca</text>
+                    <text x="50" y="480" font-family="Inter" font-size="11" fill="#5a544c">Planta baja · 198.42 m²</text>
+                </svg>
+                <svg id="fp2" class="floorplan-svg" style="display:none" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="80" y="50" width="640" height="360" fill="none" stroke="#2c3d2e" stroke-width="2"/>
+                    <line x1="80" y1="200" x2="720" y2="200" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="300" y1="50" x2="300" y2="200" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="500" y1="50" x2="500" y2="200" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <line x1="400" y1="200" x2="400" y2="410" stroke="#2c3d2e" stroke-width="1.2"/>
+                    <text x="190" y="130" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Recámara 2</text>
+                    <text x="400" y="130" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Recámara 3</text>
+                    <text x="610" y="130" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Recámara 4</text>
+                    <text x="240" y="310" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Estudio</text>
+                    <text x="560" y="310" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Recámara 5</text>
+                    <text x="80" y="480" font-family="Inter" font-size="11" fill="#5a544c">Planta alta · 193.09 m²</text>
+                </svg>
+                <svg id="fp3" class="floorplan-svg" style="display:none" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="120" y="70" width="560" height="340" fill="#b5884a" fill-opacity="0.08" stroke="#2c3d2e" stroke-width="2"/>
+                    <circle cx="400" cy="240" r="80" fill="none" stroke="#b5884a" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <rect x="180" y="110" width="180" height="90" fill="none" stroke="#2c3d2e" stroke-width="1"/>
+                    <rect x="440" y="110" width="180" height="90" fill="none" stroke="#2c3d2e" stroke-width="1"/>
+                    <text x="270" y="160" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Cocina exterior</text>
+                    <text x="530" y="160" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Lounge</text>
+                    <text x="400" y="245" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Jacuzzi</text>
+                    <text x="400" y="360" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Roof garden</text>
+                    <text x="120" y="480" font-family="Inter" font-size="11" fill="#5a544c">Azotea · 112 m²</text>
+                </svg>
+                <svg id="fp4" class="floorplan-svg" style="display:none" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="60" y="60" width="680" height="380" fill="#2c3d2e" fill-opacity="0.05" stroke="#2c3d2e" stroke-width="1.5"/>
+                    <rect x="300" y="140" width="260" height="180" fill="#f5efe3" stroke="#2c3d2e" stroke-width="2"/>
+                    <rect x="340" y="360" width="180" height="50" fill="#b5884a" fill-opacity="0.3" stroke="#2c3d2e" stroke-width="1"/>
+                    <circle cx="150" cy="250" r="30" fill="#2c3d2e" fill-opacity="0.15"/>
+                    <circle cx="640" cy="140" r="25" fill="#2c3d2e" fill-opacity="0.15"/>
+                    <circle cx="650" cy="350" r="40" fill="#2c3d2e" fill-opacity="0.15"/>
+                    <text x="430" y="240" font-family="Inter" font-size="13" fill="#2c3d2e" text-anchor="middle">Villa 5</text>
+                    <text x="430" y="390" font-family="Inter" font-size="12" fill="#2c3d2e" text-anchor="middle">Alberca</text>
+                    <text x="60" y="480" font-family="Inter" font-size="11" fill="#5a544c">Conjunto exterior · 820 m² terreno</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery">
+        <div class="container">
+            <div class="page-head" style="border: none; padding: 0 0 3rem;">
+                <span class="crumb reveal">Galería / Villa</span>
+                <h2 style="font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 400; line-height: 1;" class="reveal">Interiores <em style="font-style: italic; color: var(--olive);">y exteriores</em></h2>
+            </div>
+            <div class="gallery-grid">
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Sala"></figure>
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" alt="Comedor"></figure>
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80" alt="Alberca"></figure>
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80" alt="Recámara"></figure>
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1400&q=80" alt="Exterior"></figure>
+                <figure class="reveal"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80" alt="Terraza"></figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="location">
+        <div class="container">
+            <div class="loc-grid">
+                <div class="loc-info reveal">
+                    <span class="crumb" style="color: rgba(245,239,227,0.5);">Ubicación · Bloque 4</span>
+                    <h2>Pies en la <em>arena</em></h2>
+                    <p>El Bloque 4 es la línea más cercana al Pacífico. Villas con orientación poniente, acceso directo a playa privada y vistas despejadas al horizonte.</p>
+
+                    <div class="loc-distances">
+                        <div class="loc-distance"><span>Acceso a playa privada</span><span>0 min · caminando</span></div>
+                        <div class="loc-distance"><span>Club de playa</span><span>4 min · caminando</span></div>
+                        <div class="loc-distance"><span>Spa y gimnasio</span><span>6 min · caminando</span></div>
+                        <div class="loc-distance"><span>Marina Careyes</span><span>18 min · auto</span></div>
+                        <div class="loc-distance"><span>Aeropuerto Manzanillo</span><span>55 min · auto</span></div>
+                    </div>
+                </div>
+
+                <div class="loc-map reveal">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Mapa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREV / NEXT -->
+    <nav class="villa-nav">
+        <a href="villa.html?id=4" class="prev" data-villa-query>
+            <div>
+                <em>Anterior</em>
+                <strong>Villa 04</strong>
+            </div>
+            <svg viewBox="0 0 24 24" width="24"><path d="M19 12H5M11 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <a href="villa.html?id=6" class="next" data-villa-query>
+            <svg viewBox="0 0 24 24" width="24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <div>
+                <em>Siguiente</em>
+                <strong>Villa 06</strong>
+            </div>
+        </a>
+    </nav>
+
+    <div id="footerMount"></div>
+
+    <script src="_partials.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

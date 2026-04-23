@@ -1,0 +1,546 @@
+/* ===========================================
+   ANIMATIONS & INTERIOR PAGES
+   =========================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out);
+}
+.fade-in.in-view { opacity: 1; }
+
+/* Marker entrance stagger */
+.marker {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    animation: markerIn 0.5s var(--ease-out) forwards;
+}
+@keyframes markerIn {
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.marker:nth-child(even) { animation-delay: 0.1s; }
+.marker:nth-child(3n) { animation-delay: 0.2s; }
+.marker:nth-child(4n) { animation-delay: 0.3s; }
+.marker:nth-child(5n) { animation-delay: 0.4s; }
+
+.block-label {
+    opacity: 0;
+    animation: fadeSlideIn 0.7s var(--ease-out) 1.2s forwards;
+}
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translate(-50%, -30%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Asi panel slide in */
+.genplan-aside {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+    animation: slideIn 0.8s var(--ease-out) 1.4s forwards;
+}
+@keyframes slideIn {
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* ===========================================
+   INTERIOR PAGES BASE
+   =========================================== */
+.page-body {
+    padding-top: 72px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.page-head {
+    padding: 6rem 0 4rem;
+    border-bottom: 1px solid var(--line);
+}
+.page-head .crumb {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+}
+.page-head .crumb a { transition: opacity 0.3s; }
+.page-head .crumb a:hover { opacity: 0.6; }
+.page-head h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+.page-head h1 em { font-style: italic; color: var(--olive); }
+.page-head p {
+    max-width: 560px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+/* ===========================================
+   VILLA DETAIL
+   =========================================== */
+.villa-hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+.villa-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: kenBurns 25s linear infinite alternate;
+}
+.villa-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(31,40,34,0.3) 0%, transparent 30%, transparent 60%, rgba(31,40,34,0.7) 100%);
+}
+.villa-hero-info {
+    position: absolute;
+    bottom: 3rem;
+    left: 0; right: 0;
+    z-index: 2;
+    padding: 0 3rem;
+    color: var(--cream);
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 3rem;
+}
+.villa-hero-info small {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+.villa-hero-info h1 {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-top: 0.5rem;
+}
+.villa-hero-info h1 em {
+    font-style: italic;
+    color: var(--gold);
+}
+.villa-hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: right;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Specs grid */
+.specs {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--line);
+}
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+.spec {
+    padding: 1.5rem 0;
+}
+.spec strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--olive);
+    margin-bottom: 0.5rem;
+}
+.spec small {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+/* Floor plans */
+.floorplan {
+    padding: 6rem 0;
+}
+.floorplan-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--line);
+}
+.fp-tab {
+    padding: 1rem 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    margin-right: 1.5rem;
+}
+.fp-tab.active { opacity: 1; border-bottom-color: var(--olive); }
+
+.floorplan-image {
+    background: var(--cream);
+    padding: 3rem;
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.floorplan-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+}
+
+/* Amenities list */
+.amen-list {
+    padding: 6rem 0;
+    background: var(--bg-soft);
+}
+.amen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+}
+.amen {
+    padding: 2rem 0;
+    border-top: 1px solid var(--line);
+}
+.amen em {
+    font-style: normal;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+}
+.amen h4 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0.5rem 0;
+}
+.amen p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+}
+
+/* Gallery */
+.gallery {
+    padding: 6rem 0;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+.gallery-grid figure {
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 4/3;
+}
+.gallery-grid figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease);
+}
+.gallery-grid figure:hover img {
+    transform: scale(1.05);
+}
+.gallery-grid figure:nth-child(1) { grid-column: span 6; grid-row: span 2; aspect-ratio: 4/5; }
+.gallery-grid figure:nth-child(2) { grid-column: span 6; }
+.gallery-grid figure:nth-child(3) { grid-column: span 3; }
+.gallery-grid figure:nth-child(4) { grid-column: span 3; }
+.gallery-grid figure:nth-child(5) { grid-column: span 4; }
+.gallery-grid figure:nth-child(6) { grid-column: span 8; }
+
+/* Location / Context */
+.location {
+    padding: 6rem 0;
+    background: var(--bg-dark);
+    color: var(--cream);
+}
+.loc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.loc-info h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+.loc-info h2 em { color: var(--gold); font-style: italic; }
+.loc-info p {
+    max-width: 460px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+}
+.loc-distances {
+    margin-top: 3rem;
+    border-top: 1px solid var(--line-light);
+}
+.loc-distance {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+.loc-distance span:last-child {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold);
+}
+
+.loc-map {
+    aspect-ratio: 4/5;
+    background: var(--olive);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+.loc-map img { width:100%; height:100%; object-fit: cover; opacity: 0.8; }
+.loc-map::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 40px;
+    height: 40px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 0 rgba(181, 136, 74, 0.6);
+    animation: pulsePin 2.5s var(--ease) infinite;
+}
+@keyframes pulsePin {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(181,136,74,0.6); }
+    50% { box-shadow: 0 0 0 25px rgba(181,136,74,0); }
+}
+
+/* Prev/next villa */
+.villa-nav {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+.villa-nav a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    transition: all 0.4s var(--ease);
+}
+.villa-nav a:hover {
+    background: var(--olive);
+    color: var(--cream);
+    border-color: var(--olive);
+}
+.villa-nav a em {
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+}
+.villa-nav a strong {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+.villa-nav a.next { text-align: right; }
+
+/* Contact form */
+.contact-wrap {
+    padding: 6rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+.contact-info h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+.contact-info h2 em { font-style: italic; color: var(--olive); }
+.contact-info p { color: var(--ink-soft); line-height: 1.7; max-width: 420px; margin-bottom: 2.5rem; }
+.contact-channels { border-top: 1px solid var(--line); padding-top: 2rem; }
+.channel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.3s;
+}
+.channel:hover { padding-left: 0.5rem; }
+.channel small { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.channel span { font-family: var(--serif); font-size: 1.3rem; }
+
+.form {
+    background: var(--cream);
+    padding: 3rem;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+.form-row { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-row label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+.form-row input, .form-row textarea, .form-row select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 0.7rem 0;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.3s;
+}
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+    border-color: var(--olive);
+}
+.form-row textarea { min-height: 100px; resize: vertical; }
+.form-submit {
+    align-self: flex-start;
+    padding: 1rem 2rem;
+    background: var(--olive);
+    color: var(--cream);
+    border-radius: 2px;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+.form-submit:hover { background: var(--olive-dark); }
+
+/* Footer for interior pages */
+.footer {
+    background: var(--olive-dark);
+    color: var(--cream);
+    padding: 4rem 0 2rem;
+}
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--line-light);
+}
+.footer-brand {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.footer-cols h5 {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+.footer-cols a, .footer-cols p {
+    display: block;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    transition: color 0.3s;
+    color: var(--cream);
+}
+.footer-cols a:hover { color: var(--gold); }
+.footer-bottom {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+}
+
+@media (max-width: 1024px) {
+    .contact-wrap, .loc-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    .amen-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(6, 1fr); }
+    .gallery-grid figure:nth-child(n) { grid-column: span 6; }
+    .footer-top { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    .container { padding: 0 1.5rem; }
+    .specs-grid { grid-template-columns: 1fr; }
+    .amen-grid { grid-template-columns: 1fr; }
+    .villa-nav { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    .footer-cols { grid-template-columns: 1fr; }
+    .villa-hero-info { grid-template-columns: 1fr; padding: 0 1.5rem; bottom: 1.5rem; }
+    .villa-hero-stats { text-align: left; }
+    .form { padding: 2rem 1.5rem; }
+}

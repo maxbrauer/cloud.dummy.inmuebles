@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirador Costalegre — Residencias frente al Pacífico</title>
+    <meta name="description" content="Villas de lujo en Costalegre, Jalisco. Selecciona tu villa en nuestro plan maestro interactivo.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="genplan-body">
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-center">
+            <div class="loader-logo">MIRADOR</div>
+            <div class="loader-bar"><span></span></div>
+            <div class="loader-pct" id="loaderPct">00</div>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-left">
+            <button class="btn-menu" id="menuBtn" aria-label="Abrir menú">
+                <span class="menu-icon"><span></span><span></span></span>
+                <span class="menu-label">Menú</span>
+            </button>
+            <button class="btn-select active" id="selectBtn">
+                <span class="dot"></span>
+                Seleccionar villa
+            </button>
+            <a href="pages/masterplan.html" class="btn-plan">Plan maestro</a>
+        </div>
+
+        <a href="index.html" class="brand">
+            <span class="brand-letter">M</span>
+            <span class="brand-text">irador</span>
+        </a>
+
+        <div class="topbar-right">
+            <a href="tel:+523220000000" class="phone">+52 322 000 0000</a>
+            <div class="lang-switch">
+                <button class="active">ES</button>
+                <button>EN</button>
+            </div>
+            <a href="pages/agentes.html" class="btn-agent">Portal agentes</a>
+        </div>
+    </header>
+
+    <!-- GENPLAN MAIN -->
+    <main class="genplan">
+        <!-- Aerial view -->
+        <div class="genplan-canvas" id="canvas">
+            <img class="genplan-img" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2800&q=85" alt="Vista aérea Mirador Costalegre">
+
+            <!-- SVG overlay for outline of selected villa -->
+            <svg class="genplan-svg" id="outline" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+
+            <!-- Block labels -->
+            <button class="block-label" style="top:22%; left:78%" data-block="1">
+                <span>Bloque 1</span>
+                <small>Cima · 6 villas</small>
+            </button>
+            <button class="block-label" style="top:34%; left:82%" data-block="2">
+                <span>Bloque 2</span>
+                <small>Colina · 6 villas</small>
+            </button>
+            <button class="block-label" style="top:48%; left:86%" data-block="3">
+                <span>Bloque 3</span>
+                <small>Ladera · 6 villas</small>
+            </button>
+            <button class="block-label" style="top:62%; left:90%" data-block="4">
+                <span>Bloque 4</span>
+                <small>Playa · 5 villas</small>
+            </button>
+
+            <!-- Villa markers — positioned absolute % over canvas -->
+            <button class="marker" data-id="1" data-block="4" style="top:70%; left:76%">
+                <span class="marker-ring"></span><span class="marker-num">1</span>
+            </button>
+            <button class="marker" data-id="2" data-block="4" style="top:66%; left:68%">
+                <span class="marker-ring"></span><span class="marker-num">2</span>
+            </button>
+            <button class="marker" data-id="3" data-block="4" style="top:62%; left:58%">
+                <span class="marker-ring"></span><span class="marker-num">3</span>
+            </button>
+            <button class="marker" data-id="4" data-block="4" style="top:76%; left:54%">
+                <span class="marker-ring"></span><span class="marker-num">4</span>
+            </button>
+            <button class="marker" data-id="5" data-block="3" style="top:50%; left:50%">
+                <span class="marker-ring"></span><span class="marker-num">5</span>
+            </button>
+            <button class="marker" data-id="6" data-block="3" style="top:43%; left:30%">
+                <span class="marker-ring"></span><span class="marker-num">6</span>
+            </button>
+            <button class="marker" data-id="7" data-block="3" style="top:55%; left:15%">
+                <span class="marker-ring"></span><span class="marker-num">7</span>
+            </button>
+            <button class="marker" data-id="8" data-block="3" style="top:65%; left:20%">
+                <span class="marker-ring"></span><span class="marker-num">8</span>
+            </button>
+            <button class="marker" data-id="9" data-block="2" style="top:62%; left:5%">
+                <span class="marker-ring"></span><span class="marker-num">9</span>
+            </button>
+            <button class="marker" data-id="10" data-block="2" style="top:72%; left:28%">
+                <span class="marker-ring"></span><span class="marker-num">10</span>
+            </button>
+            <button class="marker" data-id="11" data-block="2" style="top:80%; left:38%">
+                <span class="marker-ring"></span><span class="marker-num">11</span>
+            </button>
+            <button class="marker" data-id="12" data-block="4" style="top:84%; left:48%">
+                <span class="marker-ring"></span><span class="marker-num">12</span>
+            </button>
+            <button class="marker" data-id="13" data-block="4" style="top:86%; left:62%">
+                <span class="marker-ring"></span><span class="marker-num">13</span>
+            </button>
+            <button class="marker" data-id="14" data-block="4" style="top:94%; left:74%">
+                <span class="marker-ring"></span><span class="marker-num">14</span>
+            </button>
+            <button class="marker" data-id="15" data-block="3" style="top:90%; left:88%">
+                <span class="marker-ring"></span><span class="marker-num">15</span>
+            </button>
+            <button class="marker" data-id="16" data-block="3" style="top:86%; left:96%">
+                <span class="marker-ring"></span><span class="marker-num">16</span>
+            </button>
+            <button class="marker" data-id="17" data-block="3" style="top:78%; left:95%">
+                <span class="marker-ring"></span><span class="marker-num">17</span>
+            </button>
+            <button class="marker" data-id="18" data-block="3" style="top:72%; left:88%">
+                <span class="marker-ring"></span><span class="marker-num">18</span>
+            </button>
+            <button class="marker" data-id="19" data-block="4" style="top:82%; left:80%">
+                <span class="marker-ring"></span><span class="marker-num">19</span>
+            </button>
+            <button class="marker" data-id="20" data-block="4" style="top:70%; left:50%">
+                <span class="marker-ring"></span><span class="marker-num">20</span>
+            </button>
+            <button class="marker" data-id="23" data-block="3" style="top:58%; left:35%">
+                <span class="marker-ring"></span><span class="marker-num">23</span>
+            </button>
+
+            <!-- Tooltip -->
+            <div class="tooltip" id="tooltip">
+                <div class="tt-specs">
+                    <span id="ttBeds">— recámaras</span>, <span id="ttBaths">— baños</span>
+                    <div id="ttArea">— m²</div>
+                </div>
+                <div class="tt-title">
+                    <small>Villa</small>
+                    <strong id="ttNum">—</strong>
+                </div>
+                <a href="pages/villa.html" class="tt-link" id="ttLink">
+                    Ver detalle
+                    <svg viewBox="0 0 24 24" width="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom title -->
+        <h1 class="genplan-title">
+            <span>G</span><span>e</span><span>n</span><span>p</span><span>l</span><span>a</span><span>n</span>
+        </h1>
+
+        <!-- Side filter -->
+        <aside class="genplan-aside">
+            <p class="aside-head">Filtrar por bloque</p>
+            <div class="aside-blocks">
+                <button class="blk-chip active" data-filter="all"><span>Todas</span><em>23</em></button>
+                <button class="blk-chip" data-filter="1"><span>Bloque 1</span><em>06</em></button>
+                <button class="blk-chip" data-filter="2"><span>Bloque 2</span><em>06</em></button>
+                <button class="blk-chip" data-filter="3"><span>Bloque 3</span><em>06</em></button>
+                <button class="blk-chip" data-filter="4"><span>Bloque 4</span><em>05</em></button>
+            </div>
+
+            <p class="aside-head">Vista</p>
+            <div class="aside-view">
+                <button class="view-chip active">Día</button>
+                <button class="view-chip">Atardecer</button>
+                <button class="view-chip">Plano</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- MENU TAKEOVER -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-panel">
+            <div class="menu-header">
+                <span>Menú</span>
+                <button class="menu-close" id="menuClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+            </div>
+
+            <nav class="menu-nav">
+                <a href="index.html"><em>01</em><span>Plan general</span></a>
+                <a href="pages/villa.html"><em>02</em><span>Villas</span></a>
+                <a href="pages/masterplan.html"><em>03</em><span>Plan maestro</span></a>
+                <a href="pages/amenidades.html"><em>04</em><span>Amenidades</span></a>
+                <a href="pages/ubicacion.html"><em>05</em><span>Ubicación</span></a>
+                <a href="pages/contacto.html"><em>06</em><span>Contacto</span></a>
+            </nav>
+
+            <div class="menu-footer">
+                <div class="menu-block">
+                    <small>Ventas</small>
+                    <a href="tel:+523220000000">+52 322 000 0000</a>
+                    <a href="mailto:ventas@miradorcostalegre.mx">ventas@miradorcostalegre.mx</a>
+                </div>
+                <div class="menu-block">
+                    <small>Oficinas</small>
+                    <p>Carretera 200, Km 120<br>Costalegre, Jalisco</p>
+                </div>
+                <div class="menu-block">
+                    <small>Síguenos</small>
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="menu-big">Costalegre</div>
+        </div>
+    </div>
+
+    <script src="js/genplan.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
