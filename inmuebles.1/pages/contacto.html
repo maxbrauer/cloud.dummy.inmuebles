@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto — Casa Mérida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <style>
+        .contact-wrap {
+            padding: 12rem 6vw 6rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+        .contact-left h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+        .contact-left h1 em { font-style: italic; color: var(--accent); }
+        .contact-left > p {
+            max-width: 420px;
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+        .contact-info {
+            border-top: 1px solid var(--line);
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .info-row span {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .info-row a, .info-row p {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 4rem 3rem;
+            background: var(--cream);
+            border-radius: 4px;
+        }
+        .form-field {
+            position: relative;
+            border-bottom: 1px solid var(--line);
+        }
+        .form-field label {
+            position: absolute;
+            top: 0.8rem;
+            left: 0;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+            transition: all 0.3s var(--ease);
+            pointer-events: none;
+        }
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 1.5rem 0 0.8rem;
+            font-family: var(--sans);
+            font-size: 1rem;
+            color: var(--ink);
+            outline: none;
+            resize: none;
+        }
+        .form-field textarea {
+            min-height: 120px;
+        }
+        .form-field input:focus + label,
+        .form-field input:not(:placeholder-shown) + label,
+        .form-field textarea:focus + label,
+        .form-field textarea:not(:placeholder-shown) + label,
+        .form-field select:focus + label,
+        .form-field select:valid + label {
+            top: -0.5rem;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+        .form-field:focus-within {
+            border-bottom-color: var(--ink);
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .radio-chip {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+        .radio-chip input {
+            display: none;
+        }
+        .radio-chip:has(input:checked) {
+            background: var(--ink);
+            color: var(--cream);
+            border-color: var(--ink);
+        }
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+        }
+        .submit-btn {
+            align-self: flex-start;
+            margin-top: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.4s var(--ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--sans);
+        }
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+        .submit-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+        .submit-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .map-section {
+            height: 60vh;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+        .map-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--cream);
+            text-align: center;
+        }
+        .map-overlay h3 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 400;
+            font-style: italic;
+        }
+        .map-overlay span {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .contact-wrap {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding-top: 10rem;
+            }
+            .contact-form { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+
+    <header class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-mark">CM</span>
+                <span class="logo-text">Casa Mérida</span>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html#amenidades" data-text="Amenidades">Amenidades</a>
+                <a href="propiedades.html" data-text="Propiedades">Propiedades</a>
+                <a href="../index.html#destinos" data-text="Destinos">Destinos</a>
+                <a href="experiencia.html" data-text="Experiencia">Experiencia</a>
+                <a href="contacto.html" data-text="Contacto">Contacto</a>
+            </nav>
+            <a href="contacto.html" class="btn-cta">Agendar visita</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-big">México</div>
+        <div class="mm-header">
+            <span>Menú · 2026</span>
+            <span>Casa Mérida</span>
+        </div>
+        <nav>
+            <a href="../index.html#amenidades"><em>01</em><span class="mm-label">Amenidades</span><svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <a href="propiedades.html"><em>02</em><span class="mm-label">Propiedades</span><svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <a href="../index.html#destinos"><em>03</em><span class="mm-label">Destinos</span><svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <a href="experiencia.html"><em>04</em><span class="mm-label">Experiencia</span><svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+            <a href="contacto.html"><em>05</em><span class="mm-label">Contacto</span><svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+        </nav>
+        <div class="mm-footer">
+            <div class="mm-footer-block">
+                <h6>Contacto</h6>
+                <a href="mailto:hola@casamerida.mx">hola@casamerida.mx</a>
+                <a href="tel:+525500000000">+52 55 0000 0000</a>
+            </div>
+            <div class="mm-footer-block">
+                <h6>Oficina</h6>
+                <p>Av. Masaryk 111<br>Polanco, CDMX</p>
+            </div>
+            <div class="mm-social">
+                <a href="#">IG</a><a href="#">LI</a><a href="#">PT</a><a href="#">VM</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-wrap">
+        <div class="contact-left">
+            <span class="tag reveal">/ Contacto</span>
+            <h1 class="reveal">Hablemos de tu <em>próximo hogar</em></h1>
+            <p class="reveal">Cuéntanos qué buscas. Nuestro equipo te responderá en menos de 24 horas para agendar una conversación privada.</p>
+
+            <div class="contact-info reveal">
+                <div class="info-row">
+                    <span>Correo</span>
+                    <a href="mailto:hola@casamerida.mx">hola@casamerida.mx</a>
+                </div>
+                <div class="info-row">
+                    <span>Teléfono</span>
+                    <a href="tel:+525500000000">+52 55 0000 0000</a>
+                </div>
+                <div class="info-row">
+                    <span>Oficina CDMX</span>
+                    <p>Av. Masaryk 111, Polanco</p>
+                </div>
+                <div class="info-row">
+                    <span>Oficina Mérida</span>
+                    <p>Paseo de Montejo 456, Centro</p>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('¡Gracias! Te contactaremos pronto.');">
+            <div class="form-field">
+                <input type="text" id="name" placeholder=" " required>
+                <label for="name">Nombre completo</label>
+            </div>
+            <div class="form-field">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="form-field">
+                <input type="tel" id="phone" placeholder=" ">
+                <label for="phone">Teléfono (opcional)</label>
+            </div>
+
+            <div>
+                <span class="form-label">Destino de interés</span>
+                <div class="radio-group">
+                    <label class="radio-chip"><input type="radio" name="destino" value="tulum">Tulum</label>
+                    <label class="radio-chip"><input type="radio" name="destino" value="sma">San Miguel</label>
+                    <label class="radio-chip"><input type="radio" name="destino" value="cabos">Los Cabos</label>
+                    <label class="radio-chip"><input type="radio" name="destino" value="valle">Valle de Bravo</label>
+                    <label class="radio-chip"><input type="radio" name="destino" value="cdmx">CDMX</label>
+                    <label class="radio-chip"><input type="radio" name="destino" value="merida">Mérida</label>
+                </div>
+            </div>
+
+            <div>
+                <span class="form-label">Presupuesto aproximado</span>
+                <div class="radio-group">
+                    <label class="radio-chip"><input type="radio" name="presupuesto">Hasta $20M</label>
+                    <label class="radio-chip"><input type="radio" name="presupuesto">$20M — $40M</label>
+                    <label class="radio-chip"><input type="radio" name="presupuesto">$40M — $70M</label>
+                    <label class="radio-chip"><input type="radio" name="presupuesto">+$70M</label>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <textarea id="msg" placeholder=" "></textarea>
+                <label for="msg">Cuéntanos qué buscas</label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>Enviar mensaje</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </button>
+        </form>
+    </section>
+
+    <section class="map-section">
+        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=2400&q=80" alt="México">
+        <div class="map-overlay">
+            <h3>“México es ancho, profundo y luminoso.”</h3>
+            <span>— Desde cualquier punto, te escuchamos</span>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Casa Mérida</h3>
+                    <p>Residencias premium y amenidades de autor en los destinos más codiciados de México.</p>
+                </div>
+                <div class="footer-cols">
+                    <div>
+                        <h5>Navegación</h5>
+                        <a href="../index.html#amenidades">Amenidades</a>
+                        <a href="propiedades.html">Propiedades</a>
+                        <a href="../index.html#destinos">Destinos</a>
+                        <a href="experiencia.html">Experiencia</a>
+                    </div>
+                    <div>
+                        <h5>Contacto</h5>
+                        <a href="mailto:hola@casamerida.mx">hola@casamerida.mx</a>
+                        <a href="tel:+525500000000">+52 55 0000 0000</a>
+                        <p>Oficina CDMX<br>Av. Masaryk 111, Polanco</p>
+                    </div>
+                    <div>
+                        <h5>Social</h5>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Pinterest</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-huge">Casa Mérida</div>
+            <div class="footer-bottom">
+                <span>© 2026 Casa Mérida — Hecho en México</span>
+                <span>Aviso de privacidad · Términos</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+    <script>
+        document.querySelectorAll('.radio-chip input').forEach(input => {
+            input.addEventListener('change', () => {
+                document.querySelectorAll(`.radio-chip input[name="${input.name}"]`).forEach(i => {
+                    i.parentElement.classList.toggle('active', i.checked);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

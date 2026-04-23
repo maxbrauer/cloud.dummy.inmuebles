@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Mérida — Amenidades de Lujo en México</title>
+    <meta name="description" content="Descubre residencias premium con amenidades exclusivas en los destinos más codiciados de México.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-text">
+                <span>C</span><span>A</span><span>S</span><span>A</span>
+                <span class="loader-gap">&nbsp;</span>
+                <span>M</span><span>É</span><span>R</span><span>I</span><span>D</span><span>A</span>
+            </div>
+            <div class="loader-line"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- SCROLL TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">CM</span>
+                <span class="logo-text">Casa Mérida</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#amenidades" data-text="Amenidades">Amenidades</a>
+                <a href="pages/propiedades.html" data-text="Propiedades">Propiedades</a>
+                <a href="#destinos" data-text="Destinos">Destinos</a>
+                <a href="pages/experiencia.html" data-text="Experiencia">Experiencia</a>
+                <a href="pages/contacto.html" data-text="Contacto">Contacto</a>
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+
+            <a href="pages/contacto.html" class="btn-cta">Agendar visita</a>
+        </div>
+
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-big">México</div>
+
+        <div class="mm-header">
+            <span>Menú · 2026</span>
+            <span>Casa Mérida</span>
+        </div>
+
+        <nav>
+            <a href="#amenidades">
+                <em>01</em>
+                <span class="mm-label">Amenidades</span>
+                <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+            <a href="pages/propiedades.html">
+                <em>02</em>
+                <span class="mm-label">Propiedades</span>
+                <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+            <a href="#destinos">
+                <em>03</em>
+                <span class="mm-label">Destinos</span>
+                <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+            <a href="pages/experiencia.html">
+                <em>04</em>
+                <span class="mm-label">Experiencia</span>
+                <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+            <a href="pages/contacto.html">
+                <em>05</em>
+                <span class="mm-label">Contacto</span>
+                <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+        </nav>
+
+        <div class="mm-footer">
+            <div class="mm-footer-block">
+                <h6>Contacto</h6>
+                <a href="mailto:hola@casamerida.mx">hola@casamerida.mx</a>
+                <a href="tel:+525500000000">+52 55 0000 0000</a>
+            </div>
+            <div class="mm-footer-block">
+                <h6>Oficina</h6>
+                <p>Av. Masaryk 111<br>Polanco, CDMX</p>
+            </div>
+            <div class="mm-social">
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="LinkedIn">LI</a>
+                <a href="#" aria-label="Pinterest">PT</a>
+                <a href="#" aria-label="Vimeo">VM</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-media">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2400&q=80" alt="Residencia de lujo en México">
+            <div class="hero-overlay"></div>
+            <div class="hero-vignette"></div>
+            <div class="hero-grain"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-meta reveal">
+                <span class="line"></span>
+                <span>México · Residencial Premium</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-line"><span>Vivir es</span></span>
+                <span class="hero-line"><span><em>el mayor</em></span></span>
+                <span class="hero-line"><span>privilegio</span></span>
+            </h1>
+
+            <p class="hero-sub reveal">Amenidades diseñadas para quienes entienden que el lujo es tiempo, silencio y espacio. Descubre residencias irrepetibles en los destinos más codiciados de México.</p>
+
+            <div class="hero-actions reveal">
+                <a href="#amenidades" class="btn-primary">
+                    <span>Explorar amenidades</span>
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+                <a href="pages/propiedades.html" class="btn-ghost">Ver propiedades</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Desliza</span>
+            <div class="scroll-line"><span></span></div>
+        </div>
+
+        <div class="hero-stats">
+            <div><strong data-count="27">0</strong><small>Residencias activas</small></div>
+            <div><strong data-count="12">0</strong><small>Ciudades en México</small></div>
+            <div><strong data-count="98">0</strong><small>% clientes satisfechos</small></div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Polanco</span><span>·</span>
+            <span>San Miguel de Allende</span><span>·</span>
+            <span>Tulum</span><span>·</span>
+            <span>Valle de Bravo</span><span>·</span>
+            <span>Los Cabos</span><span>·</span>
+            <span>Mérida</span><span>·</span>
+            <span>Puerto Vallarta</span><span>·</span>
+            <span>Punta Mita</span><span>·</span>
+            <span>Polanco</span><span>·</span>
+            <span>San Miguel de Allende</span><span>·</span>
+            <span>Tulum</span><span>·</span>
+            <span>Valle de Bravo</span><span>·</span>
+            <span>Los Cabos</span><span>·</span>
+            <span>Mérida</span><span>·</span>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="intro">
+        <div class="container">
+            <p class="intro-tag reveal">/01 Filosofía</p>
+            <h2 class="intro-title">
+                <span class="word">Construimos</span>
+                <span class="word">hogares</span>
+                <span class="word">que</span>
+                <span class="word">respiran</span>
+                <span class="word">al</span>
+                <span class="word">ritmo</span>
+                <span class="word">de</span>
+                <span class="word">México.</span>
+            </h2>
+            <p class="intro-text reveal">Cada residencia es una pieza única cuidadosamente curada. Combinamos arquitectura contemporánea, materiales nobles y amenidades excepcionales para que habitar sea un acto de placer cotidiano.</p>
+        </div>
+    </section>
+
+    <!-- AMENIDADES -->
+    <section class="amenities" id="amenidades">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag reveal">/02 Amenidades destacadas</span>
+                <h2 class="section-title">
+                    <span>Experiencias</span>
+                    <span class="italic">para los</span>
+                    <span>sentidos</span>
+                </h2>
+            </div>
+
+            <div class="amenities-grid">
+                <article class="amenity-card" data-index="01">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80" alt="Alberca infinity">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">01</span>
+                        <h3>Alberca Infinity</h3>
+                        <p>Piscinas suspendidas entre el cielo y el mar, climatizadas y con zona de hidromasaje.</p>
+                    </div>
+                </article>
+
+                <article class="amenity-card" data-index="02">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1400&q=80" alt="Spa privado">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">02</span>
+                        <h3>Spa & Temazcal</h3>
+                        <p>Rituales de bienestar inspirados en tradiciones prehispánicas con técnicas contemporáneas.</p>
+                    </div>
+                </article>
+
+                <article class="amenity-card" data-index="03">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80" alt="Gimnasio equipado">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">03</span>
+                        <h3>Gym & Performance</h3>
+                        <p>Centros de alto rendimiento con equipamiento Technogym, yoga studio y entrenadores certificados.</p>
+                    </div>
+                </article>
+
+                <article class="amenity-card" data-index="04">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80" alt="Sala privada">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">04</span>
+                        <h3>Sky Lounge</h3>
+                        <p>Terrazas panorámicas con cocina, fogata y cava climatizada para recibir a tu tribu.</p>
+                    </div>
+                </article>
+
+                <article class="amenity-card" data-index="05">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" alt="Cine privado">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">05</span>
+                        <h3>Screening Room</h3>
+                        <p>Sala privada Dolby Atmos con butacas de cuero italiano y curaduría de cine mexicano.</p>
+                    </div>
+                </article>
+
+                <article class="amenity-card" data-index="06">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1595429035839-c99c298ffdde?auto=format&fit=crop&w=1400&q=80" alt="Jardines">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-num">06</span>
+                        <h3>Jardines Botánicos</h3>
+                        <p>Espacios paisajísticos con especies endémicas, senderos de contemplación y huerto orgánico.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARALLAX BREAK -->
+    <section class="parallax-break">
+        <div class="parallax-img" data-speed="0.4">
+            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2400&q=80" alt="Panorama Tulum">
+        </div>
+        <div class="parallax-content">
+            <h3>“Donde el tiempo se detiene y el lujo se convierte en cotidianidad.”</h3>
+            <span>— Revista Arquine, 2025</span>
+        </div>
+    </section>
+
+    <!-- FEATURED PROPERTY SCROLL -->
+    <section class="featured">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag reveal">/03 Propiedad destacada</span>
+                <h2 class="section-title">
+                    <span>Villa</span>
+                    <span class="italic">Cenote</span>
+                    <span>— Tulum</span>
+                </h2>
+            </div>
+
+            <div class="featured-grid">
+                <div class="featured-image sticky">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80" alt="Villa Cenote">
+                </div>
+
+                <div class="featured-info">
+                    <div class="info-block">
+                        <span class="info-num">01</span>
+                        <h4>Arquitectura que dialoga</h4>
+                        <p>Diseñada por el estudio mexicano PRODUCTORA, la villa se integra al cenote natural mediante concreto pigmentado y chukum local.</p>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-num">02</span>
+                        <h4>Materiales del territorio</h4>
+                        <p>Piedra caliza yucateca, maderas tropicales de reforestación certificada y textiles tejidos por artesanas de la Península.</p>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-num">03</span>
+                        <h4>Acceso privado al cenote</h4>
+                        <p>Escalera escultórica que desciende hasta un cenote subterráneo de 12 metros de profundidad, iluminado por tragaluces cenitales.</p>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-num">04</span>
+                        <h4>Servicios concierge 24/7</h4>
+                        <p>Chef privado, housekeeping, transporte ejecutivo y curaduría de experiencias en la Riviera Maya.</p>
+                    </div>
+
+                    <a href="pages/propiedades.html" class="btn-primary dark">
+                        <span>Solicitar dossier</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINOS -->
+    <section class="destinations" id="destinos">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag reveal">/04 Destinos</span>
+                <h2 class="section-title">
+                    <span>México</span>
+                    <span class="italic">en sus</span>
+                    <span>rincones</span>
+                </h2>
+            </div>
+
+            <div class="destinations-list">
+                <a href="pages/propiedades.html" class="dest-row">
+                    <div class="dest-hover">
+                        <img src="https://images.unsplash.com/photo-1518659526054-190340b15735?auto=format&fit=crop&w=1400&q=80" alt="Tulum">
+                    </div>
+                    <span class="dest-num">01</span>
+                    <span class="dest-name">Tulum</span>
+                    <span class="dest-meta">Riviera Maya · 8 residencias</span>
+                    <svg class="dest-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+
+                <a href="pages/propiedades.html" class="dest-row">
+                    <div class="dest-hover">
+                        <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&w=1400&q=80" alt="San Miguel de Allende">
+                    </div>
+                    <span class="dest-num">02</span>
+                    <span class="dest-name">San Miguel de Allende</span>
+                    <span class="dest-meta">Guanajuato · 6 residencias</span>
+                    <svg class="dest-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+
+                <a href="pages/propiedades.html" class="dest-row">
+                    <div class="dest-hover">
+                        <img src="https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf?auto=format&fit=crop&w=1400&q=80" alt="Los Cabos">
+                    </div>
+                    <span class="dest-num">03</span>
+                    <span class="dest-name">Los Cabos</span>
+                    <span class="dest-meta">Baja California Sur · 5 residencias</span>
+                    <svg class="dest-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+
+                <a href="pages/propiedades.html" class="dest-row">
+                    <div class="dest-hover">
+                        <img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1400&q=80" alt="Valle de Bravo">
+                    </div>
+                    <span class="dest-num">04</span>
+                    <span class="dest-name">Valle de Bravo</span>
+                    <span class="dest-meta">Estado de México · 4 residencias</span>
+                    <svg class="dest-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+
+                <a href="pages/propiedades.html" class="dest-row">
+                    <div class="dest-hover">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1400&q=80" alt="Polanco">
+                    </div>
+                    <span class="dest-num">05</span>
+                    <span class="dest-name">Polanco</span>
+                    <span class="dest-meta">CDMX · 4 residencias</span>
+                    <svg class="dest-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header center">
+                <span class="tag reveal">/05 Testimonios</span>
+                <h2 class="section-title center">
+                    <span>Voces</span>
+                    <span class="italic">que</span>
+                    <span>habitan</span>
+                </h2>
+            </div>
+
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial active">
+                    <p>“Encontramos mucho más que una casa. Aquí mis hijos aprendieron a reconocer el canto de los pájaros y yo, a recordar que el tiempo puede ser mío.”</p>
+                    <span>Mariana T. · Villa Chukum, Mérida</span>
+                </div>
+                <div class="testimonial">
+                    <p>“La atención al detalle es sobresaliente: cada textura, cada vista, cada amanecer fueron pensados. Mi residencia es una obra habitable.”</p>
+                    <span>Eduardo R. · Loft Polanco</span>
+                </div>
+                <div class="testimonial">
+                    <p>“La experiencia concierge ha transformado cómo vivimos nuestros fines de semana. Simplemente, llegamos, y todo está.”</p>
+                    <span>Familia Vázquez · Valle de Bravo</span>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev" aria-label="Anterior">←</button>
+                <span class="counter"><em id="current">01</em> / 03</span>
+                <button class="next" aria-label="Siguiente">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">
+                <span class="word">¿Listo</span>
+                <span class="word">para</span>
+                <span class="word">habitar</span>
+                <span class="word italic">diferente?</span>
+            </h2>
+            <p class="reveal">Agenda una visita privada con nuestro equipo de residencias. Te acompañaremos en cada paso.</p>
+            <a href="pages/contacto.html" class="btn-primary large">
+                <span>Comenzar conversación</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Casa Mérida</h3>
+                    <p>Residencias premium y amenidades de autor en los destinos más codiciados de México.</p>
+                </div>
+
+                <div class="footer-cols">
+                    <div>
+                        <h5>Navegación</h5>
+                        <a href="#amenidades">Amenidades</a>
+                        <a href="pages/propiedades.html">Propiedades</a>
+                        <a href="#destinos">Destinos</a>
+                        <a href="pages/experiencia.html">Experiencia</a>
+                    </div>
+                    <div>
+                        <h5>Contacto</h5>
+                        <a href="mailto:hola@casamerida.mx">hola@casamerida.mx</a>
+                        <a href="tel:+525500000000">+52 55 0000 0000</a>
+                        <p>Oficina CDMX<br>Av. Masaryk 111, Polanco</p>
+                    </div>
+                    <div>
+                        <h5>Social</h5>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Pinterest</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-huge">Casa Mérida</div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Casa Mérida — Hecho en México</span>
+                <span>Aviso de privacidad · Términos</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
