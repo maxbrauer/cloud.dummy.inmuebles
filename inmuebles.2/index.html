@@ -56,92 +56,105 @@
     <!-- GENPLAN MAIN -->
     <main class="genplan">
         <!-- Aerial view -->
-        <div class="genplan-canvas" id="canvas">
-            <img class="genplan-img" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2800&q=85" alt="Vista aérea Mirador Costalegre">
+        <div class="genplan-canvas view-dia" id="canvas">
+            <img class="genplan-img" src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2800&q=85" alt="Vista aérea Mirador Costalegre">
 
             <!-- SVG overlay for outline of selected villa -->
             <svg class="genplan-svg" id="outline" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
 
             <!-- Block labels -->
-            <button class="block-label" style="top:22%; left:78%" data-block="1">
+            <button class="block-label" style="top:20%; left:72%" data-block="1">
                 <span>Bloque 1</span>
                 <small>Cima · 6 villas</small>
             </button>
-            <button class="block-label" style="top:34%; left:82%" data-block="2">
+            <button class="block-label" style="top:38%; left:80%" data-block="2">
                 <span>Bloque 2</span>
                 <small>Colina · 6 villas</small>
             </button>
-            <button class="block-label" style="top:48%; left:86%" data-block="3">
+            <button class="block-label" style="top:58%; left:22%" data-block="3">
                 <span>Bloque 3</span>
                 <small>Ladera · 6 villas</small>
             </button>
-            <button class="block-label" style="top:62%; left:90%" data-block="4">
+            <button class="block-label" style="top:76%; left:68%" data-block="4">
                 <span>Bloque 4</span>
                 <small>Playa · 5 villas</small>
             </button>
 
             <!-- Villa markers — positioned absolute % over canvas -->
-            <button class="marker" data-id="1" data-block="4" style="top:70%; left:76%">
+            <!-- BLOQUE 1 · Cima (top area) -->
+            <button class="marker" data-id="1" data-block="1" style="top:28%; left:62%">
                 <span class="marker-ring"></span><span class="marker-num">1</span>
             </button>
-            <button class="marker" data-id="2" data-block="4" style="top:66%; left:68%">
+            <button class="marker" data-id="2" data-block="1" style="top:24%; left:78%">
                 <span class="marker-ring"></span><span class="marker-num">2</span>
             </button>
-            <button class="marker" data-id="3" data-block="4" style="top:62%; left:58%">
+            <button class="marker" data-id="3" data-block="1" style="top:30%; left:88%">
                 <span class="marker-ring"></span><span class="marker-num">3</span>
             </button>
-            <button class="marker" data-id="4" data-block="4" style="top:76%; left:54%">
+            <button class="marker" data-id="4" data-block="1" style="top:18%; left:55%">
                 <span class="marker-ring"></span><span class="marker-num">4</span>
             </button>
-            <button class="marker" data-id="5" data-block="3" style="top:50%; left:50%">
+            <button class="marker" data-id="5" data-block="1" style="top:32%; left:72%">
                 <span class="marker-ring"></span><span class="marker-num">5</span>
             </button>
-            <button class="marker" data-id="6" data-block="3" style="top:43%; left:30%">
+            <button class="marker" data-id="6" data-block="1" style="top:22%; left:68%">
                 <span class="marker-ring"></span><span class="marker-num">6</span>
             </button>
-            <button class="marker" data-id="7" data-block="3" style="top:55%; left:15%">
+
+            <!-- BLOQUE 2 · Colina (upper right area) -->
+            <button class="marker" data-id="7" data-block="2" style="top:44%; left:82%">
                 <span class="marker-ring"></span><span class="marker-num">7</span>
             </button>
-            <button class="marker" data-id="8" data-block="3" style="top:65%; left:20%">
+            <button class="marker" data-id="8" data-block="2" style="top:42%; left:72%">
                 <span class="marker-ring"></span><span class="marker-num">8</span>
             </button>
-            <button class="marker" data-id="9" data-block="2" style="top:62%; left:5%">
+            <button class="marker" data-id="9" data-block="2" style="top:50%; left:88%">
                 <span class="marker-ring"></span><span class="marker-num">9</span>
             </button>
-            <button class="marker" data-id="10" data-block="2" style="top:72%; left:28%">
+            <button class="marker" data-id="10" data-block="2" style="top:46%; left:64%">
                 <span class="marker-ring"></span><span class="marker-num">10</span>
             </button>
-            <button class="marker" data-id="11" data-block="2" style="top:80%; left:38%">
+            <button class="marker" data-id="11" data-block="2" style="top:52%; left:76%">
                 <span class="marker-ring"></span><span class="marker-num">11</span>
             </button>
-            <button class="marker" data-id="12" data-block="4" style="top:84%; left:48%">
+            <button class="marker" data-id="12" data-block="2" style="top:38%; left:66%">
                 <span class="marker-ring"></span><span class="marker-num">12</span>
             </button>
-            <button class="marker" data-id="13" data-block="4" style="top:86%; left:62%">
+
+            <!-- BLOQUE 3 · Ladera (left + middle) -->
+            <button class="marker" data-id="13" data-block="3" style="top:48%; left:18%">
                 <span class="marker-ring"></span><span class="marker-num">13</span>
             </button>
-            <button class="marker" data-id="14" data-block="4" style="top:94%; left:74%">
+            <button class="marker" data-id="14" data-block="3" style="top:54%; left:32%">
                 <span class="marker-ring"></span><span class="marker-num">14</span>
             </button>
-            <button class="marker" data-id="15" data-block="3" style="top:90%; left:88%">
+            <button class="marker" data-id="15" data-block="3" style="top:62%; left:14%">
                 <span class="marker-ring"></span><span class="marker-num">15</span>
             </button>
-            <button class="marker" data-id="16" data-block="3" style="top:86%; left:96%">
+            <button class="marker" data-id="16" data-block="3" style="top:58%; left:42%">
                 <span class="marker-ring"></span><span class="marker-num">16</span>
             </button>
-            <button class="marker" data-id="17" data-block="3" style="top:78%; left:95%">
+            <button class="marker" data-id="17" data-block="3" style="top:66%; left:28%">
                 <span class="marker-ring"></span><span class="marker-num">17</span>
             </button>
-            <button class="marker" data-id="18" data-block="3" style="top:72%; left:88%">
+            <button class="marker" data-id="18" data-block="3" style="top:52%; left:50%">
                 <span class="marker-ring"></span><span class="marker-num">18</span>
             </button>
-            <button class="marker" data-id="19" data-block="4" style="top:82%; left:80%">
+
+            <!-- BLOQUE 4 · Playa (bottom) -->
+            <button class="marker" data-id="19" data-block="4" style="top:78%; left:38%">
                 <span class="marker-ring"></span><span class="marker-num">19</span>
             </button>
-            <button class="marker" data-id="20" data-block="4" style="top:70%; left:50%">
+            <button class="marker" data-id="20" data-block="4" style="top:82%; left:54%">
                 <span class="marker-ring"></span><span class="marker-num">20</span>
             </button>
-            <button class="marker" data-id="23" data-block="3" style="top:58%; left:35%">
+            <button class="marker" data-id="21" data-block="4" style="top:88%; left:44%">
+                <span class="marker-ring"></span><span class="marker-num">21</span>
+            </button>
+            <button class="marker" data-id="22" data-block="4" style="top:74%; left:62%">
+                <span class="marker-ring"></span><span class="marker-num">22</span>
+            </button>
+            <button class="marker" data-id="23" data-block="4" style="top:86%; left:76%">
                 <span class="marker-ring"></span><span class="marker-num">23</span>
             </button>
 

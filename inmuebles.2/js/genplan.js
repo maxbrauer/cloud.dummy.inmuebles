@@ -3,27 +3,29 @@
    =========================================== */
 
 const VILLAS = {
-    '1':  { beds: 4, baths: 5, area: 362.18, block: 4 },
-    '2':  { beds: 5, baths: 5, area: 391.51, block: 4 },
-    '3':  { beds: 4, baths: 4, area: 348.72, block: 4 },
-    '4':  { beds: 5, baths: 6, area: 410.05, block: 4 },
-    '5':  { beds: 5, baths: 5, area: 391.51, block: 3 },
-    '6':  { beds: 3, baths: 3, area: 285.40, block: 3 },
-    '7':  { beds: 4, baths: 4, area: 342.18, block: 3 },
-    '8':  { beds: 4, baths: 5, area: 368.92, block: 3 },
+    '1':  { beds: 4, baths: 5, area: 362.18, block: 1 },
+    '2':  { beds: 5, baths: 5, area: 391.51, block: 1 },
+    '3':  { beds: 4, baths: 4, area: 348.72, block: 1 },
+    '4':  { beds: 5, baths: 6, area: 410.05, block: 1 },
+    '5':  { beds: 5, baths: 5, area: 391.51, block: 1 },
+    '6':  { beds: 3, baths: 3, area: 285.40, block: 1 },
+    '7':  { beds: 4, baths: 4, area: 342.18, block: 2 },
+    '8':  { beds: 4, baths: 5, area: 368.92, block: 2 },
     '9':  { beds: 5, baths: 6, area: 425.30, block: 2 },
     '10': { beds: 4, baths: 4, area: 355.60, block: 2 },
     '11': { beds: 4, baths: 5, area: 372.04, block: 2 },
-    '12': { beds: 5, baths: 5, area: 398.15, block: 4 },
-    '13': { beds: 4, baths: 4, area: 340.25, block: 4 },
-    '14': { beds: 5, baths: 6, area: 431.80, block: 4 },
+    '12': { beds: 5, baths: 5, area: 398.15, block: 2 },
+    '13': { beds: 4, baths: 4, area: 340.25, block: 3 },
+    '14': { beds: 5, baths: 6, area: 431.80, block: 3 },
     '15': { beds: 3, baths: 3, area: 278.50, block: 3 },
     '16': { beds: 4, baths: 4, area: 352.15, block: 3 },
     '17': { beds: 4, baths: 5, area: 375.40, block: 3 },
     '18': { beds: 5, baths: 5, area: 402.60, block: 3 },
     '19': { beds: 4, baths: 4, area: 358.30, block: 4 },
     '20': { beds: 5, baths: 5, area: 395.20, block: 4 },
-    '23': { beds: 4, baths: 5, area: 368.45, block: 3 }
+    '21': { beds: 5, baths: 5, area: 411.40, block: 4 },
+    '22': { beds: 4, baths: 5, area: 368.45, block: 4 },
+    '23': { beds: 5, baths: 6, area: 428.90, block: 4 }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -161,28 +163,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===== VIEW CHIPS =====
+    // ===== VIEW CHIPS (CSS filters, same image) =====
     const viewChips = document.querySelectorAll('.view-chip');
-    const canvasImg = document.querySelector('.genplan-img');
-    const views = {
-        'Día':       'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2800&q=85',
-        'Atardecer': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2800&q=85',
-        'Plano':     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2800&q=85'
-    };
+    const modeMap = { 'Día': 'dia', 'Atardecer': 'sunset', 'Plano': 'plan' };
+
     viewChips.forEach(v => {
         v.addEventListener('click', () => {
             viewChips.forEach(x => x.classList.remove('active'));
             v.classList.add('active');
-            const src = views[v.textContent.trim()];
-            if (src && canvasImg) {
-                canvasImg.style.opacity = '0.3';
-                setTimeout(() => {
-                    canvasImg.src = src;
-                    canvasImg.style.opacity = '1';
-                }, 300);
-            }
+            const mode = modeMap[v.textContent.trim()];
+            canvas.classList.remove('view-dia', 'view-sunset', 'view-plan');
+            canvas.classList.add('view-' + mode);
         });
     });
-
-    canvasImg.style.transition = 'opacity 0.5s ease';
 });
