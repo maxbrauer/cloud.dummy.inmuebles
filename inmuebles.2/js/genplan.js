@@ -189,8 +189,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!canvas) return;
 
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     applyLayout(markers, labels);
     const LOT_POLY = buildLotPolys();
+
+    // Portrait phones: the canvas scrolls horizontally over the wide
+    // aerial — start centered on the lot grid (~58% of the photo width).
+    if (isMobile && window.matchMedia('(orientation: portrait)').matches) {
+        const center = () => {
+            const target = stage.offsetWidth * 0.58 - canvas.clientWidth / 2;
+            canvas.scrollLeft = Math.max(0, target);
+        };
+        requestAnimationFrame(center);
+        window.addEventListener('load', center);
+    }
 
     let hideTimer = null;
 
@@ -291,29 +304,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') clearFocus(); });
     canvas.addEventListener('click', (e) => {
-        if (!e.target.closest('.marker,.block-label,.calib-handle,.tooltip')) clearFocus();
+        if (!e.target.closest('.marker,.block-label,.calib-handle,.tooltip')) {
+            clearFocus();
+            if (isMobile) {                       // tap empty area dismisses the sheet
+                clearTimeout(hideTimer);
+                tooltip.classList.remove('show');
+                markers.forEach(m => m.classList.remove('active'));
+                clearOutline();
+            }
+        }
     });
 
     markers.forEach(marker => {
-        marker.addEventListener('mouseenter', () => showTooltip(marker));
+        marker.addEventListener('mouseenter', () => { if (!isMobile) showTooltip(marker); });
         marker.addEventListener('click', (e) => {
             e.preventDefault();
             showTooltip(marker);
-            if (!document.body.classList.contains('calib')) toggleFocus(marker.dataset.id);
+            // tap-to-zoom only on desktop; on mobile the swipe pans instead
+            if (!isMobile && !document.body.classList.contains('calib')) toggleFocus(marker.dataset.id);
         });
     });
 
-    tooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-    tooltip.addEventListener('mouseleave', hideTooltip);
-    canvas.addEventListener('mouseleave', hideTooltip);
+    // Hover-out auto-hide is desktop only; on mobile the sheet is
+    // dismissed by tapping empty space (synthetic mouseleave from touch
+    // would otherwise close it right after opening).
+    if (!isMobile) {
+        tooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+        tooltip.addEventListener('mouseleave', hideTooltip);
+        canvas.addEventListener('mouseleave', hideTooltip);
 
-    markers.forEach(marker => {
-        marker.addEventListener('mouseleave', (e) => {
-            const to = e.relatedTarget;
-            if (to && (to === tooltip || tooltip.contains(to))) return;
-            hideTooltip();
+        markers.forEach(marker => {
+            marker.addEventListener('mouseleave', (e) => {
+                const to = e.relatedTarget;
+                if (to && (to === tooltip || tooltip.contains(to))) return;
+                hideTooltip();
+            });
         });
-    });
+    }
 
     // ===== BLOCK / ROW FILTER =====
     const blkChips = document.querySelectorAll('.blk-chip');
