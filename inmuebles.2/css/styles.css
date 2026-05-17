@@ -243,14 +243,29 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     background: var(--bg-dark);
 }
 
+/* Stage = the photo box itself. Sized to the photo aspect ratio and scaled
+   up so it always covers the viewport (cover behaviour) while keeping a
+   stable coordinate space: every marker is positioned in % of THIS box,
+   so points stay locked to the same pixels of the aerial photo on any screen. */
+.genplan-stage {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    /* Box keeps the photo's exact aspect ratio and is scaled up until it
+       covers the viewport. Height is DERIVED from aspect-ratio (never set
+       explicitly) so object-fit never re-crops -> points stay aligned. */
+    aspect-ratio: 1717 / 916;
+    width: max(100%, calc(100vh * 1717 / 916));
+    transform: scale(1.04);
+    animation: kenBurns 40s linear infinite alternate;
+}
+
 .genplan-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.05);
-    animation: kenBurns 40s linear infinite alternate;
     transition: filter 0.8s var(--ease);
 }
 
@@ -259,11 +274,10 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 .view-sunset .genplan-img { filter: saturate(1.3) brightness(0.82) contrast(1.1) hue-rotate(-15deg) sepia(0.35); }
 .view-plan   .genplan-img { filter: saturate(0.2) brightness(1.15) contrast(0.9) grayscale(0.7); }
 
-.view-sunset .genplan-canvas::before,
-.view-sunset::before {
+.view-sunset .genplan-stage::before {
     background: linear-gradient(180deg, rgba(179, 90, 58, 0.25) 0%, transparent 30%, transparent 60%, rgba(31,40,34,0.7) 100%) !important;
 }
-.view-plan::after {
+.view-plan .genplan-stage::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -275,11 +289,13 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     z-index: 1;
 }
 @keyframes kenBurns {
-    from { transform: scale(1.05) translate(0, 0); }
-    to { transform: scale(1.12) translate(-2%, -1%); }
+    from { transform: scale(1.04) translate(0, 0); }
+    to { transform: scale(1.10) translate(-1.5%, -1%); }
 }
 
-.genplan-canvas::before {
+/* Vignette lives on the stage so it tracks the photo (and the ken-burns
+   move) and sits between the photo and the markers. */
+.genplan-stage::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -481,6 +497,22 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     transition: gap 0.3s;
 }
 .tt-link:hover { gap: 0.9rem; }
+
+/* Lot status pill */
+.tt-estado {
+    display: inline-block;
+    margin-top: 0.15rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    background: rgba(44,61,46,0.1);
+    color: var(--ink-soft);
+}
+.tt-estado.est-disponible { background: rgba(74,124,89,0.16);  color: #3f7a4f; }
+.tt-estado.est-apartado   { background: rgba(181,136,74,0.18); color: #9a6d2f; }
+.tt-estado.est-vendido    { background: rgba(150,60,55,0.16);  color: #9a3f3f; }
 
 /* ===========================================
    GENPLAN TITLE
@@ -761,3 +793,66 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     .menu-footer { grid-template-columns: 1fr; gap: 1rem; }
     .menu-panel { width: 100%; }
 }
+
+/* ===========================================
+   CALIBRATION MODE  (open index.html?edit=1)
+   Drag markers/labels onto the real lots, then
+   click “Copiar coords” to get the final values.
+   =========================================== */
+/* Freeze the ken-burns transform so screen px map 1:1 to image %. */
+.calib .genplan-stage { animation: none !important; transform: none !important; }
+.calib .marker,
+.calib .block-label { cursor: grab; }
+.calib .marker.dragging,
+.calib .block-label.dragging { cursor: grabbing; z-index: 50; }
+.calib .marker.dim { opacity: 0.5; pointer-events: auto; }
+.calib .genplan-title, .calib .genplan-aside { opacity: 0.25; }
+
+/* In “Lotes” mode markers only select (no drag): pointer cursor. */
+.calib-lotes .marker, .calib-lotes .block-label { cursor: pointer; }
+
+/* Draggable corner handles for reshaping the active lot */
+.calib-handle {
+    position: absolute;
+    display: none;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--olive);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    cursor: grab;
+    z-index: 60;
+    touch-action: none;
+}
+.calib-handle.dragging { cursor: grabbing; background: var(--olive); border-color: var(--cream); transform: scale(1.15); }
+
+.calib-bar {
+    position: fixed;
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%);
+    z-index: 99;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    background: rgba(31,40,34,0.92);
+    color: var(--cream);
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    font-family: var(--sans, Inter, sans-serif);
+    font-size: 0.8rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+.calib-bar button {
+    background: var(--olive);
+    color: var(--cream);
+    border: 0;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font: inherit;
+    cursor: pointer;
+}
+.calib-bar button.ghost { background: rgba(245,239,227,0.15); }
+.calib-bar code { opacity: 0.7; }
