@@ -63,7 +63,7 @@ const BLOCK_UV = {
 
 // Final locked positions in image % — calibrated against genplan-aerial.png
 // (keys: lot ids + "B1","B2"). Set to null to fall back to the quad grid.
-const MARKER_POS = {"1":[55.79,42.77],"2":[69.35,46.33],"3":[82.01,48.77],"4":[49.95,48.71],"5":[65.35,52.18],"6":[79.94,55.11],"7":[44.64,54.69],"8":[60.99,57.45],"9":[78.17,62.02],"10":[39.63,62.11],"11":[54.74,65.71],"12":[75.54,72.39],"B1":[31.03,53.66],"B2":[28.79,64.03]};
+const MARKER_POS = {"1":[55.79,42.77],"2":[69.35,46.33],"3":[82.01,48.77],"4":[49.95,48.71],"5":[65.35,52.18],"6":[79.94,55.11],"7":[45.73,55.08],"8":[61.35,58.24],"9":[78.17,62.02],"10":[40.93,61.95],"11":[56.94,65.95],"12":[75.54,72.39],"B1":[31.03,53.66],"B2":[28.79,64.03]};
 
 // Per-lot custom shapes — { id: [[x,y],[x,y],[x,y],[x,y]] } in image %.
 // Calibrated by hand against genplan-aerial.png (modo “Lotes”).
@@ -244,11 +244,62 @@ document.addEventListener('DOMContentLoaded', () => {
         outline.innerHTML = '';
     }
 
+    // ===== ZOOM TO LOT =====
+    let focusId = null;
+
+    function lotCentroid(id) {
+        const p = LOT_POLY[id];
+        if (!p) return null;
+        return [
+            (p[0][0] + p[1][0] + p[2][0] + p[3][0]) / 4,
+            (p[0][1] + p[1][1] + p[2][1] + p[3][1]) / 4
+        ];
+    }
+
+    function focusLot(id, z = 2.6) {
+        const ctr = lotCentroid(id);
+        if (!ctr) return;
+        document.body.classList.add('focused');
+        // measure the un-transformed box without animating the reset
+        stage.style.transition = 'none';
+        stage.style.transformOrigin = '0 0';
+        stage.style.transform = 'none';
+        const r  = stage.getBoundingClientRect();
+        const cr = canvas.getBoundingClientRect();
+        const lx = ctr[0] / 100 * r.width;
+        const ly = ctr[1] / 100 * r.height;
+        const tx = (cr.left + cr.width  / 2) - r.left - z * lx;
+        const ty = (cr.top  + cr.height / 2) - r.top  - z * ly;
+        requestAnimationFrame(() => {
+            stage.style.transition = '';            // re-enable smooth zoom
+            stage.style.transform = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) scale(${z})`;
+        });
+        focusId = id;
+    }
+
+    function clearFocus() {
+        if (!focusId && !document.body.classList.contains('focused')) return;
+        document.body.classList.remove('focused');
+        stage.style.transform = '';
+        stage.style.transformOrigin = '';
+        focusId = null;
+    }
+
+    function toggleFocus(id) {
+        if (focusId === id) clearFocus(); else focusLot(id);
+    }
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') clearFocus(); });
+    canvas.addEventListener('click', (e) => {
+        if (!e.target.closest('.marker,.block-label,.calib-handle,.tooltip')) clearFocus();
+    });
+
     markers.forEach(marker => {
         marker.addEventListener('mouseenter', () => showTooltip(marker));
         marker.addEventListener('click', (e) => {
             e.preventDefault();
             showTooltip(marker);
+            if (!document.body.classList.contains('calib')) toggleFocus(marker.dataset.id);
         });
     });
 
@@ -306,11 +357,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //  CALIBRATION MODE  ·  index.html?edit=1
     // ===========================================
     if (new URLSearchParams(location.search).has('edit')) {
-        initCalibration(stage, markers, labels, outline, LOT_POLY);
+        initCalibration(stage, markers, labels, outline, LOT_POLY, focusLot, clearFocus);
     }
 });
 
-function initCalibration(stage, markers, labels, outline, LOT_POLY) {
+function initCalibration(stage, markers, labels, outline, LOT_POLY, focusLot, clearFocus) {
     document.body.classList.add('calib');
     const all = [...markers, ...labels];
     let mode = 'points';          // 'points' = mover · 'lotes' = deformar lote
@@ -385,18 +436,20 @@ function initCalibration(stage, markers, labels, outline, LOT_POLY) {
             h.style.top  = p[1] + '%';
         });
     }
-    function selectLot(id) {
+    function selectLot(id, zoom) {
         activeLot = id;
+        if (zoom) focusLot(id);
         redrawLot();
         placeHandles();
-        if (readout) readout.textContent = `Lote ${id} — arrastra sus 4 esquinas`;
+        if (readout) readout.textContent =
+            `Lote ${id} — arrastra sus 4 esquinas` + (zoom ? ' · Esc para alejar' : ' · clic para acercar');
     }
 
-    // hovering a marker in 'lotes' mode picks that lot to reshape
+    // hover = seleccionar · clic en el número = acercar (zoom) para alcanzar esquinas
     markers.forEach(m => {
         m.addEventListener('mouseenter', () => { if (mode === 'lotes') selectLot(m.dataset.id); });
         m.addEventListener('click', (e) => {
-            if (mode === 'lotes') { e.preventDefault(); e.stopPropagation(); selectLot(m.dataset.id); }
+            if (mode === 'lotes') { e.preventDefault(); e.stopPropagation(); selectLot(m.dataset.id, true); }
         });
     });
 
@@ -435,6 +488,7 @@ function initCalibration(stage, markers, labels, outline, LOT_POLY) {
         if (mode === 'lotes') {
             selectLot(activeLot || markers[0].dataset.id);
         } else {
+            clearFocus();
             outline.innerHTML = '';
             placeHandles();
             readout.textContent = 'arrastra los 12 puntos / etiquetas';

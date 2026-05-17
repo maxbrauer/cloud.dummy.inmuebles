@@ -258,7 +258,11 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     width: max(100%, calc(100vh * 1717 / 916));
     transform: scale(1.04);
     animation: kenBurns 40s linear infinite alternate;
+    transition: transform 0.55s cubic-bezier(0.6, 0, 0.2, 1);
 }
+
+/* When zoomed into a lot, freeze ken-burns so the JS transform applies. */
+.focused .genplan-stage { animation: none !important; }
 
 .genplan-img {
     position: absolute;
@@ -799,8 +803,11 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
    Drag markers/labels onto the real lots, then
    click “Copiar coords” to get the final values.
    =========================================== */
-/* Freeze the ken-burns transform so screen px map 1:1 to image %. */
-.calib .genplan-stage { animation: none !important; transform: none !important; }
+/* Freeze ken-burns so screen px map 1:1 to image %. Transform left to JS
+   (no !important) so zoom-to-lot still works during calibration. */
+.calib .genplan-stage { animation: none !important; transform: none; }
+/* In Lotes mode the tooltip card would cover the lot/corners — hide it. */
+.calib-lotes .tooltip { display: none !important; }
 .calib .marker,
 .calib .block-label { cursor: grab; }
 .calib .marker.dragging,
