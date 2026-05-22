@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirador Costalegre — Residencias frente al Pacífico</title>
+    <meta name="description" content="Villas de lujo en Costalegre, Jalisco. Elige tu terreno en el plan maestro interactivo de Mirador Costalegre.">
+    <meta name="theme-color" content="#1f2822">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f2822'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23f5efe3' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mirador Costalegre — Residencias frente al Pacífico">
+    <meta property="og:description" content="Villas de lujo en Costalegre, Jalisco. Plan maestro interactivo.">
+    <meta property="og:image" content="genplan-aerial.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="genplan-aerial.webp" type="image/webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="genplan-body">
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-center">
+            <div class="loader-logo">MIRADOR</div>
+            <div class="loader-bar"><span></span></div>
+            <div class="loader-pct" id="loaderPct">00</div>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-left">
+            <button class="btn-menu" id="menuBtn" aria-label="Abrir menú">
+                <span class="menu-icon"><span></span><span></span></span>
+                <span class="menu-label">Menú</span>
+            </button>
+            <button class="btn-select active" id="selectBtn">
+                <span class="dot"></span>
+                Seleccionar villa
+            </button>
+            <a href="pages/masterplan.html" class="btn-plan">Plan maestro</a>
+        </div>
+
+        <a href="index.html" class="brand">
+            <span class="brand-letter">M</span>
+            <span class="brand-text">irador</span>
+        </a>
+
+        <div class="topbar-right">
+            <a href="tel:+523220000000" class="phone">+52 322 000 0000</a>
+            <div class="lang-switch">
+                <button class="active">ES</button>
+                <button>EN</button>
+            </div>
+            <a href="pages/agentes.html" class="btn-agent">Portal agentes</a>
+        </div>
+    </header>
+
+    <!-- GENPLAN MAIN -->
+    <main class="genplan">
+        <!-- Aerial view -->
+        <div class="genplan-canvas view-dia" id="canvas">
+
+            <!-- Stage = the photo box. Image + SVG + markers + labels all
+                 live inside it and share its transform, so the points stay
+                 locked to the same lots of the aerial photo. -->
+            <div class="genplan-stage" id="stage">
+                <picture>
+                    <source srcset="genplan-aerial.webp" type="image/webp">
+                    <img class="genplan-img" src="genplan-aerial.png" alt="Vista aérea del conjunto Mirador Costalegre con los 12 terrenos sobre la costa" width="1717" height="916" fetchpriority="high">
+                </picture>
+
+                <!-- SVG overlay for outline of selected villa -->
+                <svg class="genplan-svg" id="outline" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+
+                <!-- Row labels (positioned by genplan.js) -->
+                <button class="block-label" data-block="1">
+                    <span>Fila Fondo</span><small>Lotes 1–6</small>
+                </button>
+                <button class="block-label" data-block="2">
+                    <span>Fila Frente</span><small>Lotes 7–12</small>
+                </button>
+
+                <!-- 12 lot markers (positioned by genplan.js · MARKER_POS) -->
+                <button class="marker" data-id="1"  data-block="1"><span class="marker-ring"></span><span class="marker-num">1</span></button>
+                <button class="marker" data-id="2"  data-block="1"><span class="marker-ring"></span><span class="marker-num">2</span></button>
+                <button class="marker" data-id="3"  data-block="1"><span class="marker-ring"></span><span class="marker-num">3</span></button>
+                <button class="marker" data-id="4"  data-block="1"><span class="marker-ring"></span><span class="marker-num">4</span></button>
+                <button class="marker" data-id="5"  data-block="1"><span class="marker-ring"></span><span class="marker-num">5</span></button>
+                <button class="marker" data-id="6"  data-block="1"><span class="marker-ring"></span><span class="marker-num">6</span></button>
+
+                <button class="marker" data-id="7"  data-block="2"><span class="marker-ring"></span><span class="marker-num">7</span></button>
+                <button class="marker" data-id="8"  data-block="2"><span class="marker-ring"></span><span class="marker-num">8</span></button>
+                <button class="marker" data-id="9"  data-block="2"><span class="marker-ring"></span><span class="marker-num">9</span></button>
+                <button class="marker" data-id="10" data-block="2"><span class="marker-ring"></span><span class="marker-num">10</span></button>
+                <button class="marker" data-id="11" data-block="2"><span class="marker-ring"></span><span class="marker-num">11</span></button>
+                <button class="marker" data-id="12" data-block="2"><span class="marker-ring"></span><span class="marker-num">12</span></button>
+            </div>
+
+            <!-- Tooltip (child of canvas, positioned in screen space) -->
+            <div class="tooltip" id="tooltip">
+                <div class="tt-specs">
+                    <span id="ttSup">— m²</span> · <span id="ttFrente">— m de frente</span>
+                    <div><span id="ttEstado" class="tt-estado">—</span></div>
+                </div>
+                <div class="tt-title">
+                    <small>Terreno</small>
+                    <strong id="ttNum">—</strong>
+                </div>
+                <a href="pages/villa.html" class="tt-link" id="ttLink">
+                    Ver detalle
+                    <svg viewBox="0 0 24 24" width="14"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom title -->
+        <h1 class="genplan-title" aria-label="Genplan — plan general interactivo">
+            <span aria-hidden="true">G</span><span aria-hidden="true">e</span><span aria-hidden="true">n</span><span aria-hidden="true">p</span><span aria-hidden="true">l</span><span aria-hidden="true">a</span><span aria-hidden="true">n</span>
+        </h1>
+
+        <!-- Side filter -->
+        <aside class="genplan-aside">
+            <p class="aside-head">Filtrar por fila</p>
+            <div class="aside-blocks">
+                <button class="blk-chip active" data-filter="all"><span>Todos</span><em>12</em></button>
+                <button class="blk-chip" data-filter="1"><span>Fila Fondo</span><em>06</em></button>
+                <button class="blk-chip" data-filter="2"><span>Fila Frente</span><em>06</em></button>
+            </div>
+
+            <p class="aside-head">Vista</p>
+            <div class="aside-view">
+                <button class="view-chip active">Día</button>
+                <button class="view-chip">Atardecer</button>
+                <button class="view-chip">Plano</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- MENU TAKEOVER -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-panel">
+            <div class="menu-header">
+                <span>Menú</span>
+                <button class="menu-close" id="menuClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+            </div>
+
+            <nav class="menu-nav">
+                <a href="index.html"><em>01</em><span>Plan general</span></a>
+                <a href="pages/villa.html"><em>02</em><span>Villas</span></a>
+                <a href="pages/masterplan.html"><em>03</em><span>Plan maestro</span></a>
+                <a href="pages/amenidades.html"><em>04</em><span>Amenidades</span></a>
+                <a href="pages/ubicacion.html"><em>05</em><span>Ubicación</span></a>
+                <a href="pages/contacto.html"><em>06</em><span>Contacto</span></a>
+            </nav>
+
+            <div class="menu-footer">
+                <div class="menu-block">
+                    <small>Ventas</small>
+                    <a href="tel:+523220000000">+52 322 000 0000</a>
+                    <a href="mailto:ventas@miradorcostalegre.mx">ventas@miradorcostalegre.mx</a>
+                </div>
+                <div class="menu-block">
+                    <small>Oficinas</small>
+                    <p>Carretera 200, Km 120<br>Costalegre, Jalisco</p>
+                </div>
+                <div class="menu-block">
+                    <small>Síguenos</small>
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="menu-big">Costalegre</div>
+        </div>
+    </div>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/genplan.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
